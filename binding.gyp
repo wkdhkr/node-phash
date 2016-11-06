@@ -5,6 +5,7 @@
       'target_name': 'pHashBinding',
       'defines': [
         'HAVE_IMAGE_HASH',
+        'WIN64',
         'cimg_verbosity=0',
         'cimg_use_png',
         'cimg_use_jpeg',
@@ -23,14 +24,7 @@
         'deps/pHash/pHash.gyp:phash',
       ],
       'conditions': [
-        ['OS=="win"',
-          {
-            'include_dirs': [
-              'deps/pHash/win32/',
-            ],
-          },
-        ],
-	['OS == "mac"', 
+	['OS == "mac"',
 	  {
 	    'ccflags': [
       	      '-mmacosx-version-min=10.7',
@@ -43,4 +37,3 @@
     }
   ]
 }
-

@@ -18,7 +18,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
     Evan Klinger - eklinger@phash.org
-    D Grant Starkweather - dstarkweather@phash.org
+    David Starkweather - dstarkweather@phash.org
 
 */
 
@@ -29,9 +29,8 @@
 #define PI 3.1415926535897932
 
 #include <math.h>
-#include </usr/include/complex.h>
-#include <stdlib.h>
+#include "phcomplex.h"
 
-int fft(double *x, int N, complex double *X);
+int fft(const double *x, const int N, Complexd *X);
 
 #endif
