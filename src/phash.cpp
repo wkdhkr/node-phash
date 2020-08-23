@@ -154,7 +154,7 @@ void oldHash(const Nan::FunctionCallbackInfo<v8::Value>& args) {
     args.GetReturnValue().Set(Nan::New<v8::Number>(hash));
 }
 
-void RegisterModule(Handle<Object> target) {
+void RegisterModule(v8::Local<Object> target) {
     Nan::SetMethod(target, "imageHashSync", ImageHashSync);
     Nan::SetMethod(target, "imageHash", ImageHashAsync);
     Nan::SetMethod(target, "hammingDistance", HammingDistance);
