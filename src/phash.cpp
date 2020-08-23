@@ -46,7 +46,7 @@ T StringToNumber ( const string &Text ) {
     return ss >> result ? result : 0;
 }
 
-const char* toCString(const String::Utf8Value& value) {
+const char* toCString(const Nan::Utf8String& value) {
     return *value ? *value : "<string conversion failed>";
 }
 
@@ -108,7 +108,7 @@ NAN_METHOD(ImageHashAsync) {
     Nan::ThrowError("Callback is required and must be an Function.");
   }
 
-  Nan::Utf8Value file_arg(info[0]);
+  Nan::Utf8String file_arg(info[0]);
   string file = string(toCString(file_arg));
 
   Nan::Callback *callback = new Nan::Callback(info[1].As<Function>());
@@ -118,7 +118,7 @@ NAN_METHOD(ImageHashAsync) {
 
 void ImageHashSync(const Nan::FunctionCallbackInfo<v8::Value>& args) {
     Nan::HandleScope scope;
-    Nan::Utf8Value str(args[0]);
+    Nan::Utf8String str(args[0]);
     string result = getHash(*str);
     args.GetReturnValue().Set(Nan::New(result.c_str()).ToLocalChecked());
 }
@@ -126,8 +126,8 @@ void ImageHashSync(const Nan::FunctionCallbackInfo<v8::Value>& args) {
 void HammingDistance(const Nan::FunctionCallbackInfo<v8::Value>& args) {
     Nan::HandleScope scope;
 
-    Nan::Utf8Value arg0(args[0]);
-    Nan::Utf8Value arg1(args[1]);
+    Nan::Utf8String arg0(args[0]);
+    Nan::Utf8String arg1(args[1]);
     string aString = string(toCString(arg0));
     string bString = string(toCString(arg1));
 
@@ -147,7 +147,7 @@ void HammingDistance(const Nan::FunctionCallbackInfo<v8::Value>& args) {
 void oldHash(const Nan::FunctionCallbackInfo<v8::Value>& args) {
     Nan::HandleScope scope;
 
-    Nan::Utf8Value str(args[0]);
+    Nan::Utf8String str(args[0]);
     const char* file = toCString(str);
     ulong64 hash = 0;
     ph_dct_imagehash(file, hash);
